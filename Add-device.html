@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add New Device - IoT Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #f0f5ff, #f7f7f7);
+      color: #333;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-weight: bold;
+      color: #004aad;
+      font-size: 20px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 25px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .menu a:hover {
+      background-color: #e6f0ff;
+      color: #004aad;
+    }
+
+    .menu a.active {
+      background-color: #004aad;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .main {
+      padding: 30px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .main h1 {
+      font-size: 24px;
+      color: white;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .form-card {
+      background: linear-gradient(135deg, #4171f2, #335bc2);
+      border-radius: 20px;
+      padding: 30px 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      color: white;
+    }
+
+    .form-section {
+      background-color: #f2f2f2;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+
+    .form-section:hover {
+      background-color: #e4e4e4;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 20px;
+      margin-top: 5px;
+    }
+
+    .checkbox-grid label {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+      gap: 8px;
+      color: #333;
+    }
+
+    input[type="checkbox"] {
+      accent-color: #004aad;
+      transform: scale(1.1);
+    }
+
+    .submit-btn {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .submit-btn button {
+      background-color: #ffffff;
+      color: #004aad;
+      padding: 12px 24px;
+      font-size: 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .submit-btn button:hover {
+      background-color: #dde8ff;
+      color: #002a77;
+    }
+
+    .submit-btn button i {
+      font-style: normal;
+      font-size: 17px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header>
+    <div class="logo">🌐 IoT Dashboard</div>
+    <div class="menu">
+      <a href="dashboard.html">Home</a>
+      <a href="dashboard.html">Room Dashboard</a>
+      <a href="room-data.html">Room Data</a>
+      <a href="temperature-analytics.html">Temperature Graph</a>
+      <a href="threshold-access.html">Set Threshold</a>
+      <a href="edit-device.html">Edit Device</a>
+      <a href="add-device.html" class="active">Add Device</a>
+    </div>
+    <div class="user">
+      <span>👤</span>
+      <span>Admin ▼</span>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="main">
+    <div class="form-card">
+      <h1>➕ Add New Device</h1>
+
+      <!-- Room Name -->
+      <div class="form-section">
+        <label for="roomName">🏠 Room Name</label>
+        <input type="text" id="roomName" placeholder="Enter Room Name" />
+      </div>
+
+      <!-- Sensor Selection -->
+      <div class="form-section">
+        <label>Select Sensors</label>
+        <div class="checkbox-grid">
+          <label><input type="checkbox" /> Temperature 🌡️</label>
+          <label><input type="checkbox" /> Humidity 💧</label>
+          <label><input type="checkbox" /> CO₂ 🫁</label>
+          <label><input type="checkbox" /> Noise 🔊</label>
+          <label><input type="checkbox" /> Ozone (O₃) ☁️</label>
+          <label><input type="checkbox" /> Radon (Rn) 🧪</label>
+          <label><input type="checkbox" /> VOC 🌫️</label>
+        </div>
+      </div>
+
+      <!-- Assign Block -->
+      <div class="form-section">
+        <label for="location">📍 Assign Block / Location</label>
+        <input type="text" id="location" placeholder="e.g., Block A, Floor 2" />
+      </div>
+
+      <!-- Add Button -->
+      <div class="submit-btn">
+        <button onclick="handleAddDevice()"><i>➕</i> Add Device</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleAddDevice() {
+      const roomName = document.getElementById("roomName").value.trim();
+      const location = document.getElementById("location").value.trim();
+
+      if (!roomName || !location) {
+        alert("Please enter both Room Name and Location.");
+        return;
+      }
+
+      const selectedSensors = [];
+      document.querySelectorAll(".checkbox-grid input[type='checkbox']").forEach((checkbox) => {
+        if (checkbox.checked) {
+          selectedSensors.push(checkbox.parentElement.textContent.trim());
+        }
+      });
+
+      const roomData = {
+        name: roomName,
+        location: location,
+        sensors: selectedSensors
+      };
+
+      localStorage.setItem("newRoom", JSON.stringify(roomData));
+
+      // Go to Room Dashboard
+      window.location.href = "dashboard.html";
+    }
+  </script>
+
+</body>
+</html>

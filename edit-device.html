@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Device - IoT Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f4faff;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-weight: bold;
+      color: #004aad;
+      font-size: 20px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 25px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      background-color: #004aad;
+      color: white;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      padding: 30px;
+    }
+
+    .heading-box {
+      background: #e0e4eb;
+      color: #1a1a1a;
+      padding: 16px 20px 12px;
+      font-size: 18px;
+      font-weight: bold;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .heading-box span {
+      font-size: 14px;
+      color: #444;
+      font-weight: 500;
+    }
+
+    h3 {
+      font-size: 15px;
+      color: #444;
+      margin-top: 20px;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .input-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .input-row input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .input-row label {
+      font-size: 12px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .input-with-label {
+      flex: 1;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      margin-top: 6px;
+      resize: none;
+    }
+
+    .alarm-btn {
+      display: inline-block;
+      background: #ff6666;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 25px;
+      font-size: 14px;
+      margin: 20px 0;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 102, 102, 0.4);
+      transition: background 0.3s ease;
+    }
+
+    .alarm-btn:hover {
+      background: #e63c3c;
+    }
+
+    .save-btn {
+      background: #004aad;
+      color: white;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0, 74, 173, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    .save-btn:hover {
+      background: #003a8c;
+    }
+
+    .save-btn i {
+      font-style: normal;
+    }
+
+    /* Popup style */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.4);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .popup-box {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 320px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.2);
+    }
+
+    .popup-box h3 {
+      color: #d60000;
+      margin-bottom: 10px;
+    }
+
+    .popup-box button {
+      background: #004aad;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">IoT Dashboard</div>
+  <div class="menu">
+    <a href="dashboard.html">Home</a>
+    <a href="room-dashboard.html">Room Dashboard</a>
+    <a href="room1.html">Room Data</a>
+    <a href="temperature-analytics.html">Temperature Graph</a>
+    <a href="threshold-access.html">Set Threshold</a>
+    <a href="edit-device.html" class="active">Edit Device</a>
+    <a href="add-device.html">Add Device</a>
+  </div>
+  <div class="user">
+    <span>👤</span>
+    <span>Admin ▼</span>
+  </div>
+</header>
+
+<div class="container">
+  <div class="heading-box">
+    <div>⚙️ Set Threshold Values</div>
+    <span>Configure device parameters</span>
+  </div>
+
+  <h3>🌡️ Temperature Range</h3>
+  <div class="input-row">
+    <div class="input-with-label">
+      <label>Min:</label>
+      <input type="number" id="minTemp" value="10" />
+    </div>
+    <div class="input-with-label">
+      <label>Max:</label>
+      <input type="number" id="maxTemp" value="30" />
+    </div>
+  </div>
+
+  <button class="alarm-btn" onclick="showPopup()">🔔 Alarm Set & Active</button>
+
+  <h3>📝 Description</h3>
+  <textarea id="description" placeholder="Enter threshold description and notes..."></textarea>
+
+  <button class="save-btn" onclick="saveChanges()"><i>💾</i> Save Changes</button>
+</div>
+
+<!-- Alarm popup -->
+<div class="popup" id="alarmPopup">
+  <div class="popup-box">
+    <h3>🔔 Alarm is now Active</h3>
+    <p>If temperature crosses your defined range, an alert will appear on room-data.</p>
+    <button onclick="hidePopup()">Okay</button>
+  </div>
+</div>
+
+<script>
+  function showPopup() {
+    document.getElementById("alarmPopup").style.display = "flex";
+  }
+
+  function saveChanges() {
+  const min = document.getElementById("minTemp").value;
+  const max = document.getElementById("maxTemp").value;
+  const desc = document.getElementById("description").value;
+
+  // ✅ Correct localStorage keys matching room-data.html
+  localStorage.setItem("minThreshold", min);
+  localStorage.setItem("maxThreshold", max);
+  localStorage.setItem("thresholdDescription", desc);
+
+  // ✅ Go to Room Data page
+  window.location.href = "room-data.html";
+}
+
+</script>
+
+</body>
+</html>

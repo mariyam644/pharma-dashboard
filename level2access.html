@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Level 2 Access Required</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #f0f4ff, #fefefe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .access-box {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #d9534f;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      width: 100%;
+      font-size: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    button {
+      flex: 1;
+      background-color: #004aad;
+      color: white;
+      padding: 12px 10px;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00328f;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-weight: bold;
+      color: #004aad;
+      font-size: 20px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 25px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    .menu a:hover {
+      background-color: #e6f0ff;
+      color: #004aad;
+    }
+
+    .menu a.active {
+      background-color: #004aad;
+      color: white;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🌐 IoT Dashboard</div>
+  <div class="menu">
+    <a href="/">Home</a>
+    <a href="/room-dashboard">Room Dashboard</a>
+    <a href="/room-data">Room Data</a>
+    <a href="/temperature-graph">Temperature Graph</a>
+    <a href="/set-threshold" class="active">Set Threshold</a>
+    <a href="/edit-device">Edit Device</a>
+    <a href="/add-device">Add Device</a>
+  </div>
+  <div class="user">
+    <span>👤</span>
+    <span>Admin ▼</span>
+  </div>
+</header>
+
+<div class="access-box">
+  <h1>🔒 Level 2 Access Required</h1>
+  <p>Please enter your Level 2 password to continue</p>
+
+  <input type="password" id="level2pass" placeholder="Enter Level 2 Password" />
+
+  <div class="btn-group">
+    <button onclick="verifyPassword()">✅ Verify & Continue</button>
+    <button onclick="goBack()">🔙 Go Back</button>
+  </div>
+
+  <div class="error" id="errorMsg"></div>
+</div>
+
+<script>
+  function verifyPassword() {
+    const input = document.getElementById("level2pass").value;
+    const error = document.getElementById("errorMsg");
+
+    if (input === "iotadmin123") {
+      window.location.href = "edit-device.html";
+    } else {
+      error.textContent = "❌ Incorrect password. Please try again.";
+    }
+  }
+
+  function goBack() {
+    window.location.href = "temperature-graph.html";
+  }
+</script>
+
+</body>
+</html>

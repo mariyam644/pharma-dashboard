@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Room Dashboard - IoT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #f0f5ff, #f7f7f7);
+      color: #333;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-weight: bold;
+      color: #004aad;
+      font-size: 20px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 25px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .menu a:hover {
+      background-color: #e6f0ff;
+      color: #004aad;
+    }
+
+    .menu a.active {
+      background-color: #004aad;
+      color: white;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .main {
+      padding: 40px 60px;
+    }
+
+    .main h1 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .main p {
+      margin-top: 0;
+      color: #666;
+    }
+
+    .rooms-grid {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .room-card {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      position: relative;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .room-card:hover {
+      background: #cccccc !important;
+      color: #000;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .room-card .icon {
+      font-size: 28px;
+      background: white;
+      color: #444;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .room-card h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .room-card p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .add-btn {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .add-btn button {
+      background-color: #00a86b;
+      color: white;
+      padding: 14px 28px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .add-btn button:hover {
+      background-color: #008e5a;
+    }
+
+    /* Room gradient themes */
+    .room1 { background: linear-gradient(135deg, #3b5998, #8b9dc3); }
+    .room2 { background: linear-gradient(135deg, #4b0082, #708238); }
+    .room3 { background: linear-gradient(135deg, #2e8b57, #98fb98); }
+    .room4 { background: linear-gradient(135deg, #4682b4, #a9cfe7); }
+    .room5 { background: linear-gradient(135deg, #556b2f, #bdb76b); }
+    .room6 { background: linear-gradient(135deg, #6a5acd, #b0c4de); }
+    .room7 { background: linear-gradient(135deg, #1e90ff, #87cefa); }
+    .room8 { background: linear-gradient(135deg, #2f4f4f, #778899); }
+    .room9 { background: linear-gradient(135deg, #8b0000, #fa8072); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🌐 IoT Dashboard</div>
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="room-dashboard.html" class="active">Room Dashboard</a>
+    <a href="room-data.html">Room Data</a>
+    <a href="temperature-graph.html">Temperature Graph</a>
+    <a href="set-threshold.html">Set Threshold</a>
+    <a href="edit-device.html">Edit Device</a>
+    <a href="add-device.html">Add Device</a>
+  </div>
+  <div class="user">
+    <span>👤</span>
+    <span>Admin ▼</span>
+  </div>
+</header>
+
+<div class="main">
+  <h1>Room Dashboard</h1>
+  <p>Monitor all your connected devices</p>
+
+  <div class="rooms-grid" id="roomGrid">
+    <div class="room-card room1" onclick="window.location.href='room-data.html'"><div class="icon">🏠</div><h3>Room 1</h3><p>Active</p></div>
+    <div class="room-card room2" onclick="window.location.href='room-data.html'"><div class="icon">🏠</div><h3>Room 2</h3><p>Active</p></div>
+    <div class="room-card room3" onclick="window.location.href='room-data.html'"><div class="icon">🏠</div><h3>Room 3</h3><p>Active</p></div>
+    <div class="room-card room4" onclick="window.location.href='room-data.html'"><div class="icon">🏠</div><h3>Room 4</h3><p>Active</p></div>
+    <div class="room-card room5" onclick="window.location.href='room-data.html'"><div class="icon">🏠</div><h3>Room 5</h3><p>Active</p></div>
+    <div class="room-card room6" onclick="window.location.href='room-data.html'"><div class="icon">🏠</div><h3>Room 6</h3><p>Active</p></div>
+    <div class="room-card room7" onclick="window.location.href='room-data.html'"><div class="icon">🏠</div><h3>Room 7</h3><p>Active</p></div>
+    <div class="room-card room8" onclick="window.location.href='room-data.html'"><div class="icon">🏠</div><h3>Room 8</h3><p>Active</p></div>
+  </div>
+
+  <div class="add-btn">
+    <button onclick="window.location.href='add-device.html'">➕ Add New Device</button>
+  </div>
+</div>
+
+<script>
+  const roomData = localStorage.getItem("newRoom");
+  if (roomData) {
+    const room = JSON.parse(roomData);
+    const box = document.createElement("div");
+    box.className = "room-card room9";
+    box.onclick = function() { window.location.href = 'room-data.html'; };
+    box.innerHTML = `<div class="icon">🏠</div><h3>${room.name}</h3><p>Active</p>`;
+    document.getElementById("roomGrid").appendChild(box);
+    localStorage.removeItem("newRoom");
+  }
+</script>
+
+</body>
+</html>

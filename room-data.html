@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Room 1 - IoT Monitoring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #f0f4ff, #fefefe);
+      color: #333;
+    }
+    header {
+      background: #ffffff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .logo {
+      font-weight: bold;
+      color: #004aad;
+      font-size: 20px;
+    }
+    .menu {
+      display: flex;
+      gap: 25px;
+    }
+    .menu a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .menu a:hover {
+      background-color: #e6f0ff;
+      color: #004aad;
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .main {
+      padding: 40px 60px;
+    }
+    h1 {
+      font-size: 26px;
+      color: #004aad;
+      margin-bottom: 5px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+    .sensor-box {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      position: relative;
+    }
+    .sensor-box:hover {
+      transform: translateY(-5px);
+    }
+    .sensor-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .sensor-value {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .sensor-box:nth-child(1) { background: #fff5eb; }
+    .sensor-box:nth-child(2) { background: #e8f4ff; }
+    .sensor-box:nth-child(3) { background: #e9fff1; }
+    .sensor-box:nth-child(4) { background: #f5e8ff; }
+    .sensor-box:nth-child(5) { background: #fffbe8; }
+    .sensor-box:nth-child(6) { background: #f0f1ff; }
+
+    .view-btn {
+      background-color: #004aad;
+      color: white;
+      padding: 10px 18px;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .view-btn:hover {
+      background-color: #00328f;
+    }
+
+    .section-heading {
+      margin: 50px 0 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #004aad;
+    }
+
+    .threshold-box {
+      margin-top: 50px;
+      background-color: #eef7ff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    }
+
+    .threshold-box h3 {
+      margin-top: 0;
+      color: #004aad;
+    }
+
+    .threshold-item {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .threshold-item span {
+      font-weight: bold;
+    }
+
+    .dropdown-container {
+      margin: 30px 0 10px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🌐 IoT Dashboard</div>
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="room-dashboard.html">Room Dashboard</a>
+    <a href="room1.html">Room Data</a>
+    <a href="temperature-graph.html">Temperature Graph</a>
+    <a href="set-threshold.html">Set Threshold</a>
+    <a href="edit-device.html">Edit Device</a>
+  </div>
+  <div class="user">
+    <span>👤</span>
+    <span>Admin ▼</span>
+  </div>
+</header>
+
+<div class="main">
+  <h1>Room 1</h1>
+  <p class="subtitle">Live Sensor Data & Monitoring</p>
+
+  <div class="dropdown-container">
+    <label for="viewType">Select View Type: </label>
+    <select id="viewType">
+      <option value="hourly">Hourly</option>
+      <option value="daily">Daily</option>
+      <option value="monthly">Monthly</option>
+    </select>
+  </div>
+
+  <div class="grid">
+    <div class="sensor-box">
+      <div class="sensor-title">🌡️ Temperature</div>
+      <div class="sensor-value">22°C</div>
+      <button class="view-btn" onclick="viewSelectedAnalytics()">View Analytics</button>
+    </div>
+    <div class="sensor-box">
+      <div class="sensor-title">💧 Humidity</div>
+      <div class="sensor-value">44%</div>
+      <button class="view-btn" onclick="window.location.href='humidity-graph.html'">View Analytics</button>
+    </div>
+    <div class="sensor-box">
+      <div class="sensor-title">🌬️ CO₂</div>
+      <div class="sensor-value">430 ppm</div>
+      <button class="view-btn" onclick="window.location.href='co2-graph.html'">View Analytics</button>
+    </div>
+    <div class="sensor-box">
+      <div class="sensor-title">🔊 Noise</div>
+      <div class="sensor-value">57 dB</div>
+      <button class="view-btn" onclick="window.location.href='noise-graph.html'">View Analytics</button>
+    </div>
+    <div class="sensor-box">
+      <div class="sensor-title">🟠 Ozone (O₃)</div>
+      <div class="sensor-value">18 ppb</div>
+      <button class="view-btn" onclick="window.location.href='ozone-graph.html'">View Analytics</button>
+    </div>
+    <div class="sensor-box">
+      <div class="sensor-title">☢️ Radon (Rn)</div>
+      <div class="sensor-value">23 Bq/m³</div>
+      <button class="view-btn" onclick="window.location.href='radon-graph.html'">View Analytics</button>
+    </div>
+  </div>
+
+  <div class="threshold-box">
+    <h3>🔧 Device Threshold Settings</h3>
+    <div class="threshold-item"><span>Min Temperature:</span> <span id="minVal">Not Set</span></div>
+    <div class="threshold-item"><span>Max Temperature:</span> <span id="maxVal">Not Set</span></div>
+    <div class="threshold-item"><span>Description:</span> <span id="descVal">Not Set</span></div>
+  </div>
+</div>
+
+<script>
+  const min = localStorage.getItem('minThreshold') || 'Not Set';
+  const max = localStorage.getItem('maxThreshold') || 'Not Set';
+  const desc = localStorage.getItem('thresholdDescription') || 'Not Set';
+
+  document.getElementById('minVal').textContent = min;
+  document.getElementById('maxVal').textContent = max;
+  document.getElementById('descVal').textContent = desc;
+
+  function viewSelectedAnalytics() {
+    const viewType = document.getElementById("viewType").value;
+    localStorage.setItem("selectedView", viewType);
+    window.location.href = "temperature-graph.html";
+  }
+</script>
+
+</body>
+</html>
