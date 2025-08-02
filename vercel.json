@@ -6,7 +6,8 @@
     { "source": "/temperature-graph", "destination": "/temperature-graph.html" },
     { "source": "/set-threshold", "destination": "/set-threshold.html" },
     { "source": "/edit-device", "destination": "/edit-device.html" },
-    { "source": "/Add-device", "destination": "/Add-device.html" }
+    { "source": "/add-device", "destination": "/Add-device.html" }
   ]
 }
+
 
